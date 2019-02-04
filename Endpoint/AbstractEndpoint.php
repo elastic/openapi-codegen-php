@@ -78,7 +78,7 @@ abstract class AbstractEndpoint implements EndpointInterface
     {
         $params = [];
 
-        foreach ($this->params as $paramName => $paramVal) {
+        foreach ($this->params ?? [] as $paramName => $paramVal) {
             if (in_array($paramName, $this->paramWhitelist)) {
                 $params[$paramName] = $paramVal;
             }
