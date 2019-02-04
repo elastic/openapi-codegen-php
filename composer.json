@@ -29,5 +29,8 @@
     "exclude-from-classmap" : [
       "/Tests/"
     ]
-  }
+  },
+  "bin": [
+      "resources/dev/swiftype-codegen.sh"
+  ]
 }
