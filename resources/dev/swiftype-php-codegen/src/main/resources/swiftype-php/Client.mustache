@@ -11,33 +11,11 @@ namespace {{invokerPackage}};
 /**
  * Client implementation.
  *
- * @package Swiftype\AppSearch
+ * @package Swiftype
  * @author  Aurélien FOUCRET <aurelien.foucret@elastic.co>
  */
-class Client
+class Client extends \Swiftype\AbstractClient
 {
-    /**
-    * @var Connection\Connection
-    */
-    private $connection;
-
-    /**
-     * @var callable
-     */
-    private $endpointBuilder;
-
-    /**
-     * Client constructor.
-     *
-     * @param callable              $endpointBuilder Allow to access endpoints.
-     * @param Connection\Connection $connection      HTTP connection handler.
-     */
-    public function __construct(callable $endpointBuilder, Connection\Connection $connection)
-    {
-        $this->endpointBuilder = $endpointBuilder;
-        $this->connection      = $connection;
-    }
-
     // phpcs:disable
 {{#apiInfo}}{{#apis}}{{#operations}}{{#operation}}
     /**
@@ -72,7 +50,7 @@ class Client
         ];
 {{/allParams.0}}
 
-        $endpoint = ($this->endpointBuilder)('{{classname}}');
+        $endpoint = $this->getEndpoint('{{classname}}');
 {{#allParams.0}}
         $endpoint->setParams($params);
 {{/allParams.0}}
@@ -84,16 +62,4 @@ class Client
     }
 {{/operation}}{{/operations}}{{/apis}}{{/apiInfo}}
     // phpcs:enable
-
-    private function performRequest(Endpoint\EndpointInterface $endpoint)
-    {
-        $method  = $endpoint->getMethod();
-        $uri     = $endpoint->getURI();
-        $params  = $endpoint->getParams();
-        $body    = $endpoint->getBody();
-
-        $response = $this->connection->performRequest($method, $uri, $params, $body)->wait();
-
-        return $response['body'] ?? $response;
-    }
 }
