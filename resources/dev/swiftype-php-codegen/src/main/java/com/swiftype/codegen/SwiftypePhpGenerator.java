@@ -6,6 +6,7 @@ import java.util.Locale;
 import java.util.Map;
 
 import org.apache.commons.lang3.StringUtils;
+import org.openapitools.codegen.CliOption;
 import org.openapitools.codegen.CodegenConfig;
 import org.openapitools.codegen.CodegenOperation;
 import org.openapitools.codegen.CodegenType;
@@ -18,10 +19,15 @@ import io.swagger.v3.oas.models.media.Schema;
 
 public class SwiftypePhpGenerator extends PhpClientCodegen implements CodegenConfig {
 
-  public final static String GENERATOR_NAME = "swiftype-php";
+  public static final String GENERATOR_NAME = "swiftype-php";
+  public static final String HELP_URL       = "helpUrl";
+  public static final String COPYRIGHT      = "copyright";
 
   public SwiftypePhpGenerator() {
     super();
+    
+    cliOptions.add(new CliOption(HELP_URL, "Help URL"));
+    cliOptions.add(new CliOption(COPYRIGHT, "Copyright"));
 
     this.setTemplateDir(SwiftypePhpGenerator.GENERATOR_NAME);
     this.setSrcBasePath("");
