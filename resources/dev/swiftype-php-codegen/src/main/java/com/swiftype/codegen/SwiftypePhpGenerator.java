@@ -4,18 +4,21 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Set;
 
 import org.apache.commons.lang3.StringUtils;
 import org.openapitools.codegen.CliOption;
 import org.openapitools.codegen.CodegenConfig;
 import org.openapitools.codegen.CodegenOperation;
 import org.openapitools.codegen.CodegenType;
+import org.openapitools.codegen.CodegenParameter;
 import org.openapitools.codegen.SupportingFile;
 import org.openapitools.codegen.languages.PhpClientCodegen;
 import org.openapitools.codegen.utils.ModelUtils;
 
 import io.swagger.v3.oas.models.Operation;
 import io.swagger.v3.oas.models.media.Schema;
+import io.swagger.v3.oas.models.parameters.Parameter;
 
 public class SwiftypePhpGenerator extends PhpClientCodegen implements CodegenConfig {
 
@@ -95,6 +98,17 @@ public class SwiftypePhpGenerator extends PhpClientCodegen implements CodegenCon
     }
 
     return super.getTypeDeclaration(name);
+  }
+
+  @Override
+  public CodegenParameter fromParameter(Parameter parameter, Set<String> imports) {
+    CodegenParameter codegenParameter = super.fromParameter(parameter, imports);
+
+    if (parameter.getExtensions() != null && parameter.getExtensions().containsKey("x-codegen-param-name")) {
+        codegenParameter.paramName = parameter.getExtensions().get("x-codegen-param-name").toString();
+    }
+
+    return codegenParameter;
   }
 
   private void resetTemplateFiles() {
