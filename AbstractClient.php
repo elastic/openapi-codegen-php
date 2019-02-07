@@ -20,7 +20,7 @@ use Swiftype\Connection\Connection;
 abstract class AbstractClient
 {
     /**
-     * @var Connection\Connection
+     * @var Connection
      */
     private $connection;
 
