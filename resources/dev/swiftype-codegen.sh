@@ -24,6 +24,7 @@ cd ${generatordir} && docker build --target runner -t ${generaroimage} swiftype-
 docker run --rm -v ${rootdir}:/local ${generaroimage} generate -g swiftype-php \
                                                                -i /local/resources/api/api-spec.yml \
                                                                -o /local/ \
-                                                               -c /local/resources/api/config.json
+                                                               -c /local/resources/api/config.json \
+                                                               -t /local/resources/api/templates
 
 docker run --rm -v ${rootdir}:/project ${fixerimage} fix --config=.php_cs.dist

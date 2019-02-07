@@ -1,25 +1,14 @@
-#### Clients methods
+{{>readme_title}}
+{{>readme_content}}
+{{>readme_install}}
+{{>readme_usage}}
+### Clients methods
 
-Method name |Parameters| Description
-------------|----------|------------
-{{#apiInfo}}{{#apis}}{{#operations}}{{#operation}}`{{operationId}}` | {{#allParams}}- `${{paramName}}`{{#required}} (required) {{/required}}{{#hasMore}}<br /> {{/hasMore}}{{/allParams}} | {{#summary}}{{.}}{{/summary}}{{#externalDocs}}<br />[Endpoint Documentation]({{url}}){{/externalDocs}}
+Method      | Description | Documentation
+------------|-------------|--------------
+{{#apiInfo}}{{#apis}}{{#operations}}{{#operation}}**`{{operationId}}`**| {{#summary}}{{.}}{{/summary}}{{#allParams.0}}<br/> <br/> **Parameters :** <br />{{#allParams}}  - `${{paramName}}`{{#required}} (required) {{/required}}{{#hasMore}}<br /> {{/hasMore}}{{/allParams}}{{/allParams.0}}<br/>{{#externalDocs}}|[Endpoint Documentation]({{url}}){{/externalDocs}}
 {{/operation}}{{/operations}}{{/apis}}{{/apiInfo}}
-
-## Contributions
-
-To contribute code, please fork the repository and submit a pull request.
-
-### Developers
-
-Code for the endpoints are generated automatically using a custom version of [OpenAPI Generator](https://github.com/openapitools/openapi-generator).
-
-The easier way to regenerate endpoints is to use the docker laucher packaged in `vendor/bin`:
-
-```bash
-./vendor/bin/swiftype-codegen.sh
-```
-
-The custom generator will be build and launched using the following the `resources/api/api-spec.yml` file.
-
-You can then commit and PR your endpoint code and modified api-spec files.
-The client class may be changed in some case. Do not forget to include it in your commit.
+{{>readme_dev}}
+{{>readme_faq}}
+{{>readme_contrib}}
+{{>readme_licence}}
