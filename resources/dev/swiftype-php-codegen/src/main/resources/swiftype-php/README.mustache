@@ -4,9 +4,9 @@
 {{>readme_usage}}
 ### Clients methods
 
-Method name |Parameters| Description
-------------|----------|------------
-{{#apiInfo}}{{#apis}}{{#operations}}{{#operation}}`{{operationId}}` | {{#allParams}}- `${{paramName}}`{{#required}} (required) {{/required}}{{#hasMore}}<br /> {{/hasMore}}{{/allParams}} | {{#summary}}{{.}}{{/summary}}{{#externalDocs}}<br />[Endpoint Documentation]({{url}}){{/externalDocs}}
+Method      | Description | Documentation
+------------|-------------|--------------
+{{#apiInfo}}{{#apis}}{{#operations}}{{#operation}}**`{{operationId}}`**| {{#summary}}{{.}}{{/summary}}{{#allParams.0}}<br/> <br/> **Parameters :** <br />{{#allParams}}  - `${{paramName}}`{{#required}} (required) {{/required}}{{#hasMore}}<br /> {{/hasMore}}{{/allParams}}{{/allParams.0}}<br/>{{#externalDocs}}|[Endpoint Documentation]({{url}}){{/externalDocs}}
 {{/operation}}{{/operations}}{{/apis}}{{/apiInfo}}
 {{>readme_dev}}
 {{>readme_faq}}
