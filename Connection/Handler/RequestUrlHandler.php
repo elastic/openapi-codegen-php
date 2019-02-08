@@ -70,6 +70,7 @@ class RequestUrlHandler
      */
     public function __invoke($request)
     {
+        $handler = $this->handler;
         $request = Core::setHeader($request, 'host', [$this->host]);
         $request['scheme'] = $this->scheme;
 
@@ -77,7 +78,7 @@ class RequestUrlHandler
             $request['uri'] = $this->addURIPrefix($request['uri']);
         }
 
-        return ($this->handler)($request);
+        return $handler($request);
     }
 
     /**

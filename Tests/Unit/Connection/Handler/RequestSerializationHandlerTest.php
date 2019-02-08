@@ -70,7 +70,7 @@ class RequestSerializationHandlerTest extends TestCase
     private function getHandler()
     {
         $handler = function ($request) {
-            return $request['body'] ?? null;
+            return isset($request['body']) ? $request['body'] : null;
         };
 
         $serializer = $this->getSerializer();

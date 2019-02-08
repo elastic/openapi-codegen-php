@@ -44,9 +44,10 @@ class RequestSerializationHandler
 
     public function __invoke($request)
     {
+        $handler = $this->handler;
         $request = Core::setHeader($request, 'Content-Type', ['application/json']);
 
-        $body = $request['body'] ?? [];
+        $body = isset($request['body']) ? $request['body'] : [];
 
         if (isset($request['query_params'])) {
             $body = array_merge($body, $request['query_params']);
@@ -58,6 +59,6 @@ class RequestSerializationHandler
             $request['body'] = $this->serializer->serialize($body);
         }
 
-        return ($this->handler)($request);
+        return $handler($request);
     }
 }
