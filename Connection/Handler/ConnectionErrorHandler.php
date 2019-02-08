@@ -47,7 +47,8 @@ class ConnectionErrorHandler
      */
     public function __invoke($request)
     {
-        $response = Core::proxy(($this->handler)($request), function ($response) use ($request) {
+        $handler = $this->handler;
+        $response = Core::proxy($handler($request), function ($response) use ($request) {
             if (true === isset($response['error'])) {
                 throw $this->getConnectionErrorException($request, $response);
             }

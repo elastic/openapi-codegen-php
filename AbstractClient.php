@@ -43,7 +43,8 @@ abstract class AbstractClient
 
     protected function getEndpoint($name)
     {
-        return ($this->endpointBuilder)($name);
+        $endpointBuilder = $this->endpointBuilder;
+        return $endpointBuilder($name);
     }
 
     protected function performRequest(Endpoint\EndpointInterface $endpoint)
@@ -55,6 +56,6 @@ abstract class AbstractClient
 
         $response = $this->connection->performRequest($method, $uri, $params, $body)->wait();
 
-        return $response['body'] ?? $response;
+        return isset($response['body']) ? $response['body'] : $response;
     }
 }

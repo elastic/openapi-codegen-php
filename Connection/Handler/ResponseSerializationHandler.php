@@ -44,10 +44,11 @@ class ResponseSerializationHandler
 
     public function __invoke($request)
     {
-        $response = Core::proxy(($this->handler)($request), function ($response) use ($request) {
+        $handler = $this->handler;
+        $response = Core::proxy($handler($request), function ($response) use ($request) {
             if (true === isset($response['body'])) {
                 $response['body'] = stream_get_contents($response['body']);
-                $headers = $response['transfer_stats'] ?? [];
+                $headers = isset($response['transfer_stats']) ? $response['transfer_stats'] : [];
                 $response['body'] = $this->serializer->deserialize($response['body'], $headers);
             }
 

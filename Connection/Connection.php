@@ -60,6 +60,8 @@ class Connection
      */
     public function performRequest($method, $uri, $params = null, $body = null)
     {
+        $handler = $this->handler;
+
         $request = [
             'http_method' => $method,
             'uri' => $uri,
@@ -67,6 +69,6 @@ class Connection
             'query_params' => $params,
         ];
 
-        return ($this->handler)(array_filter($request));
+        return $handler(array_filter($request));
     }
 }
