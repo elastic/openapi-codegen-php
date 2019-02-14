@@ -1,4 +1,4 @@
-# Swiftype PHP clients generator.
+# Swiftype PHP client generator.
 
 > Make easier clients creation by generating most of the code from an Open API specification.
 >
@@ -127,6 +127,16 @@ Once you will have fulfiled the tasks above, it is very simple for end user to g
 $clientBuilder = new \Fancy\Client\ClientBuilder();
 $client = $clientBuilder->build();
 ```
+
+### Customization
+
+Now you have a working client, there is several things that you may want to customize :
+
+- Client and Endpoint code generation
+- Documentation generation
+- Connection logic : request and response handling, authentication, ...
+
+You can find a full documentation of available extension point in the [Customization documentation](docs/Customization.md).
 
 ## FAQ 🔮
 
