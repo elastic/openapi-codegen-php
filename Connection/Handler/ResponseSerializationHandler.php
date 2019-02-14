@@ -8,7 +8,6 @@
 
 namespace Swiftype\Connection\Handler;
 
-use GuzzleHttp\Ring\Core;
 use Swiftype\Serializer\SerializerInterface;
 
 /**
@@ -31,6 +30,11 @@ class ResponseSerializationHandler
     private $serializer;
 
     /**
+     * @var \GuzzleHttp\Ring\Core
+     */
+    private $ringUtils;
+
+    /**
      * Constructor.
      *
      * @param callable            $handler    original handler
@@ -40,12 +44,13 @@ class ResponseSerializationHandler
     {
         $this->handler = $handler;
         $this->serializer = $serializer;
+        $this->ringUtils = new \GuzzleHttp\Ring\Core();
     }
 
     public function __invoke($request)
     {
         $handler = $this->handler;
-        $response = Core::proxy($handler($request), function ($response) use ($request) {
+        $response = $this->ringUtils->proxy($handler($request), function ($response) {
             if (true === isset($response['body'])) {
                 $response['body'] = stream_get_contents($response['body']);
                 $headers = isset($response['transfer_stats']) ? $response['transfer_stats'] : [];

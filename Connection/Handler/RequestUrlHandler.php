@@ -8,8 +8,6 @@
 
 namespace Swiftype\Connection\Handler;
 
-use GuzzleHttp\Ring\Core;
-
 /**
  * This handler add automatically all URIs data to the request.
  *
@@ -40,6 +38,11 @@ class RequestUrlHandler
     private $scheme;
 
     /**
+     * @var \GuzzleHttp\Ring\Core
+     */
+    private $ringUtils;
+
+    /**
      * Constructor.
      *
      * @param callable $handler     original handler
@@ -59,6 +62,8 @@ class RequestUrlHandler
         if (isset($urlComponents['port'])) {
             $this->host = sprintf('%s:%s', $this->host, $urlComponents['port']);
         }
+
+        $this->ringUtils = new \GuzzleHttp\Ring\Core();
     }
 
     /**
@@ -71,7 +76,7 @@ class RequestUrlHandler
     public function __invoke($request)
     {
         $handler = $this->handler;
-        $request = Core::setHeader($request, 'host', [$this->host]);
+        $request = $this->ringUtils->setHeader($request, 'host', [$this->host]);
         $request['scheme'] = $this->scheme;
 
         if ($this->uriPrefix) {

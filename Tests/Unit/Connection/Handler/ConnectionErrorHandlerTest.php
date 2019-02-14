@@ -34,7 +34,7 @@ class ConnectionErrornHandlerTest extends TestCase
         }
 
         $handler = new ConnectionErrorHandler(
-            function ($request) use ($response) {
+            function () use ($response) {
                 return new CompletedFutureArray($response);
             }
         );

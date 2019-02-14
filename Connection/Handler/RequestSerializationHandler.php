@@ -8,7 +8,6 @@
 
 namespace Swiftype\Connection\Handler;
 
-use GuzzleHttp\Ring\Core;
 use Swiftype\Serializer\SerializerInterface;
 
 /**
@@ -31,6 +30,11 @@ class RequestSerializationHandler
     private $serializer;
 
     /**
+     * @var \GuzzleHttp\Ring\Core
+     */
+    private $ringUtils;
+
+    /**
      * Constructor.
      *
      * @param callable            $handler    original handler
@@ -40,12 +44,13 @@ class RequestSerializationHandler
     {
         $this->handler = $handler;
         $this->serializer = $serializer;
+        $this->ringUtils = new \GuzzleHttp\Ring\Core();
     }
 
     public function __invoke($request)
     {
         $handler = $this->handler;
-        $request = Core::setHeader($request, 'Content-Type', ['application/json']);
+        $request = $this->ringUtils->setHeader($request, 'Content-Type', ['application/json']);
 
         $body = isset($request['body']) ? $request['body'] : [];
 

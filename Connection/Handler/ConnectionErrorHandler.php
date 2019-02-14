@@ -8,7 +8,6 @@
 
 namespace Swiftype\Connection\Handler;
 
-use GuzzleHttp\Ring\Core;
 use Swiftype\Exception\ConnectionException;
 use Swiftype\Exception\CouldNotConnectToHostException;
 use Swiftype\Exception\CouldNotResolveHostException;
@@ -28,6 +27,12 @@ class ConnectionErrorHandler
      */
     private $handler;
 
+
+    /**
+     * @var \GuzzleHttp\Ring\Core
+     */
+    private $ringUtils;
+
     /**
      * Constructor.
      *
@@ -35,7 +40,8 @@ class ConnectionErrorHandler
      */
     public function __construct(callable $handler)
     {
-        $this->handler = $handler;
+        $this->handler   = $handler;
+        $this->ringUtils = new \GuzzleHttp\Ring\Core();
     }
 
     /**
@@ -48,9 +54,9 @@ class ConnectionErrorHandler
     public function __invoke($request)
     {
         $handler = $this->handler;
-        $response = Core::proxy($handler($request), function ($response) use ($request) {
+        $response = $this->ringUtils->proxy($handler($request), function ($response) {
             if (true === isset($response['error'])) {
-                throw $this->getConnectionErrorException($request, $response);
+                throw $this->getConnectionErrorException($response);
             }
 
             return $response;
@@ -67,11 +73,13 @@ class ConnectionErrorHandler
      *
      * @return ConnectionException
      */
-    private function getConnectionErrorException($request, $response)
+    private function getConnectionErrorException($response)
     {
         $exception = null;
         $message = $response['error']->getMessage();
+
         $exception = new ConnectionException($message);
+
         if (isset($response['curl']['errno'])) {
             switch ($response['curl']['errno']) {
                 case CURLE_COULDNT_RESOLVE_HOST:

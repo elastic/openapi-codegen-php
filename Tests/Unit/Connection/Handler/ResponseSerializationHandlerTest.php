@@ -46,9 +46,8 @@ class ResponseSerializationHandlerTest extends TestCase
      */
     public function requestDataProvider()
     {
-        $serializer = $this->getSerializer();
         $data = [
-            [$serializer->serialize(['foo' => 'bar']), ['foo' => 'bar']],
+            ['{"foo": "bar"}', ['foo' => 'bar']],
             ['["foo", "bar"]', ['foo', 'bar']],
             ['{}', []],
             ['[]', []],
@@ -63,12 +62,13 @@ class ResponseSerializationHandlerTest extends TestCase
      */
     private function getHandler($body)
     {
-        $handler = function ($request) use ($body) {
+        $handler = function () use ($body) {
             $stream = fopen('php://memory', 'r+');
             fwrite($stream, $body);
             rewind($stream);
+            $headers = ['content_type' => 'application/json'];
 
-            return new CompletedFutureArray(['body' => $stream]);
+            return new CompletedFutureArray(['body' => $stream, 'transfer_stats' => $headers]);
         };
 
         $serializer = $this->getSerializer();

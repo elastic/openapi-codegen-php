@@ -37,28 +37,12 @@ class RequestSerializationHandlerTest extends TestCase
      */
     public function requestDataProvider()
     {
-        $serializer = $this->getSerializer();
         $data = [
-            [
-                ['body' => ['foo' => 'bar']],
-                $serializer->serialize(['foo' => 'bar']),
-            ],
-            [
-                ['query_params' => ['foo' => 'bar']],
-                $serializer->serialize(['foo' => 'bar']),
-            ],
-            [
-                ['body' => ['foo' => 'bar'], 'query_params' => ['foo' => 'bar']],
-                $serializer->serialize(['foo' => 'bar']),
-            ],
-            [
-                ['body' => ['foo1' => 'bar1'], 'query_params' => ['foo2' => 'bar2']],
-                $serializer->serialize(['foo1' => 'bar1', 'foo2' => 'bar2']),
-            ],
-            [
-                [],
-                null,
-            ],
+            [['body' => ['foo' => 'bar']], '{"foo":"bar"}'],
+            [['query_params' => ['foo' => 'bar']], '{"foo":"bar"}'],
+            [['body' => ['foo' => 'bar'], 'query_params' => ['foo' => 'bar']], '{"foo":"bar"}'],
+            [['body' => ['foo1' => 'bar1'], 'query_params' => ['foo2' => 'bar2']], '{"foo1":"bar1","foo2":"bar2"}'],
+            [[], null],
         ];
 
         return $data;

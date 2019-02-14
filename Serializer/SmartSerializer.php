@@ -22,14 +22,14 @@ class SmartSerializer implements SerializerInterface
     /**
      * @var string
      */
-    private $PHP_VERSION;
+    private $phpVersion;
 
     /**
      * Default constructor.
      */
     public function __construct()
     {
-        $this->PHP_VERSION = phpversion();
+        $this->phpVersion = phpversion();
     }
 
     /**
@@ -43,19 +43,23 @@ class SmartSerializer implements SerializerInterface
     {
         if (true === is_string($data)) {
             return $data;
-        } else {
-            $this->prepareData($data);
-            if (version_compare($this->PHP_VERSION, '5.6.6', '<') || !defined('JSON_PRESERVE_ZERO_FRACTION')) {
-                $data = json_encode($data);
-            } else {
-                $data = json_encode($data, JSON_PRESERVE_ZERO_FRACTION);
-            }
-            if ('[]' === $data) {
-                return '{}';
-            } else {
-                return $data;
-            }
         }
+
+        $this->prepareData($data);
+
+        $flags = JSON_PRESERVE_ZERO_FRACTION;
+
+        if (version_compare($this->phpVersion, '5.6.6', '<') || !defined('JSON_PRESERVE_ZERO_FRACTION')) {
+            $flags = null;
+        }
+
+        $data = json_encode($data, $flags);
+      
+        if ('[]' === $data) {
+            return '{}';
+        }
+
+        return $data;
     }
 
     /**
@@ -111,8 +115,7 @@ class SmartSerializer implements SerializerInterface
         $result = @json_decode($data, true);
 
         if (JSON_ERROR_NONE !== json_last_error() && E_NOTICE === (error_reporting() & E_NOTICE)) {
-            $e = new JsonErrorException(json_last_error(), $data, $result);
-            throw $e;
+            throw new JsonErrorException(json_last_error(), $data, $result);
         }
 
         return $result;
