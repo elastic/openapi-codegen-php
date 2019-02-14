@@ -15,27 +15,17 @@ namespace Swiftype\Connection\Handler;
  *
  * @author  Aurélien FOUCRET <aurelien.foucret@elastic.co>
  */
-class RequestUrlHandler
+class RequestUrlPrefixHandler
 {
     /**
      * @var string
      */
-    private $uriPrefix = null;
+    private $uriPrefix;
 
     /**
      * @var callable
      */
     private $handler;
-
-    /**
-     * @var string
-     */
-    private $host;
-
-    /**
-     * @var string
-     */
-    private $scheme;
 
     /**
      * @var \GuzzleHttp\Ring\Core
@@ -45,24 +35,13 @@ class RequestUrlHandler
     /**
      * Constructor.
      *
-     * @param callable $handler     original handler
-     * @param string   $apiEndpoint API endpoint (eg. http://myserver/).
-     * @param string   $uriPrefix   A prefix to be added to all URIs?
+     * @param callable $handler   Original handler.
+     * @param string   $uriPrefix A prefix to be added to all URIs.
      */
-    public function __construct(callable $handler, $apiEndpoint, $uriPrefix = null)
+    public function __construct(callable $handler, $uriPrefix)
     {
-        $this->handler = $handler;
-
-        $urlComponents = parse_url($apiEndpoint);
-
-        $this->scheme = $urlComponents['scheme'];
-        $this->host = $urlComponents['host'];
+        $this->handler   = $handler;
         $this->uriPrefix = $uriPrefix;
-
-        if (isset($urlComponents['port'])) {
-            $this->host = sprintf('%s:%s', $this->host, $urlComponents['port']);
-        }
-
         $this->ringUtils = new \GuzzleHttp\Ring\Core();
     }
 
@@ -76,12 +55,7 @@ class RequestUrlHandler
     public function __invoke($request)
     {
         $handler = $this->handler;
-        $request = $this->ringUtils->setHeader($request, 'host', [$this->host]);
-        $request['scheme'] = $this->scheme;
-
-        if ($this->uriPrefix) {
-            $request['uri'] = $this->addURIPrefix($request['uri']);
-        }
+        $request['uri'] = $this->addURIPrefix($request['uri']);
 
         return $handler($request);
     }

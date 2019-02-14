@@ -33,6 +33,11 @@ abstract class AbstractClientBuilder
     private $serializer;
 
     /**
+     * @var string
+     */
+    private $host;
+
+    /**
      * Constructor.
      */
     public function __construct()
@@ -103,6 +108,18 @@ abstract class AbstractClientBuilder
     }
 
     /**
+     * @param string $host
+     *
+     * @return $this
+     */
+    public function setHost($host)
+    {
+        $this->host = $host;
+
+        return $this;
+    }
+
+    /**
      * Return the configured clien.
      */
     abstract public function build();
@@ -117,6 +134,7 @@ abstract class AbstractClientBuilder
         $handler = new Connection\Handler\RequestSerializationHandler($handler, $this->serializer);
         $handler = new Connection\Handler\ConnectionErrorHandler($handler);
         $handler = new Connection\Handler\ResponseSerializationHandler($handler, $this->serializer);
+        $handler = new Connection\Handler\RequestHostHandler($handler, $this->host);
 
         return $handler;
     }
