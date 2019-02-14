@@ -60,7 +60,7 @@ By convention, the code generator expect the `resources/api` folder containing t
 
 * **`config.json`** : A configuration file contains important variable variables that allow to configure both code and documentation generation :
 
-   > ```json
+```json
 {
     "gitUserId": "myorg",
     "gitRepoId": "my-new-fancy-client",
@@ -123,7 +123,7 @@ class ClientBuilder extends \Swiftype\AbstractClientBuilder
 
 Once you will have fulfiled the tasks above, it is very simple for end user to get client they can use :
 
-```
+```php
 $clientBuilder = new \Fancy\Client\ClientBuilder();
 $client = $clientBuilder->build();
 ```
