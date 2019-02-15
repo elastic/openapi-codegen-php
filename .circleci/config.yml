@@ -80,7 +80,7 @@ jobs:
     steps:
     - install_deps
     - run:
-        name:
+        name: PHPLINT
         command: vendor/bin/phplint . --exclude=vendor
 
   qa-phpcs:
