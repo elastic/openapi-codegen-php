@@ -72,9 +72,9 @@ class Connection
         try {
             $this->tracer->info("Request:", $request);
             $response = $handler(array_filter($request))->wait();
-            $this->tracer->info("Response", array_intersect_key($response, array_flip(['status', 'body'])));
+            $this->tracer->info("Response:", array_intersect_key($response, array_flip(['status', 'body'])));
         } catch (\Exception $e) {
-            $this->logger->warning("Request failure", array_merge($request, ['error' => $e->getMessage()]));
+            $this->logger->warning("Request failure:", ['request' => $request, 'error' => $e->getMessage(), 'stacktrace' => $e->getTrace()]);
             throw $e;
         }
 
