@@ -1,6 +1,6 @@
 <?php
 /**
- * This file is part of the Swiftype Common PHP Client package.
+ * This file is part of the Elastic OpenAPI PHP code generator.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -14,7 +14,6 @@ use function InvalidArgumentException\__construct as sprintf;
  * JSON error handling providing human friendly messages.
  *
  * @package Swiftype\Exception
- *
  * @author  Aurélien FOUCRET <aurelien.foucret@elastic.co>
  */
 class JsonErrorException extends \Exception implements SwiftypeException

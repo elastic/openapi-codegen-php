@@ -1,6 +1,6 @@
 <?php
 /**
- * This file is part of the Swiftype Common PHP Client package.
+ * This file is part of the Elastic OpenAPI PHP code generator.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -16,7 +16,6 @@ use Swiftype\Serializer\SmartSerializer;
  * Unit tests for the request serialization handler.
  *
  * @package Swiftype\Test\Unit\Connection\Handler
- *
  * @author  Aurélien FOUCRET <aurelien.foucret@elastic.co>
  */
 class RequestSerializationHandlerTest extends TestCase

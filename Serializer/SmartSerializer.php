@@ -1,6 +1,6 @@
 <?php
 /**
- * This file is part of the Swiftype Common PHP Client package.
+ * This file is part of the Elastic OpenAPI PHP code generator.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -14,7 +14,6 @@ use Swiftype\Exception\JsonErrorException;
  * Default serializer used by the client.
  *
  * @package Swiftype\Serializer
- *
  * @author  Aurélien FOUCRET <aurelien.foucret@elastic.co>
  */
 class SmartSerializer implements SerializerInterface
@@ -54,7 +53,7 @@ class SmartSerializer implements SerializerInterface
         }
 
         $data = json_encode($data, $flags);
-      
+
         if ('[]' === $data) {
             return '{}';
         }
