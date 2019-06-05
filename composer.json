@@ -1,11 +1,12 @@
 {
-  "name" : "swiftype/swiftype-common-php",
-  "description" : "A base library used to create Swiftype PHP clients.",
-  "homepage": "https://github.com/swiftype/swiftype-common-php",
+  "name" : "elastic/openapi-codegen",
+  "description" : "A base library used to create Elastic PHP clients.",
+  "homepage": "https://github.com/elastic/openapi-codegen-php",
   "keywords" : [
     "search",
     "client",
-    "swiftype"
+    "elastic",
+    "openapi"
   ],
   "license" : "Apache-2.0",
   "type" : "library",
@@ -26,13 +27,13 @@
   },
   "autoload" : {
     "psr-4" : {
-      "Swiftype\\" : ""
+      "Elastic\\OpenApi\\Codegen\\" : ""
     },
     "exclude-from-classmap" : [
       "/Tests/"
     ]
   },
   "bin": [
-      "resources/dev/swiftype-codegen.sh"
+      "resources/dev/elastic-openapi-codegen.sh"
   ]
 }

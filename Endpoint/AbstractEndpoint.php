@@ -1,21 +1,21 @@
 <?php
 /**
- * This file is part of the Swiftype PHP Client package.
+ * This file is part of the Elastic OpenAPI PHP code generator.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
-namespace Swiftype\Endpoint;
+namespace Elastic\OpenApi\Codegen\Endpoint;
 
-use Swiftype\Exception\UnexpectedValueException;
+use Elastic\OpenApi\Codegen\Exception\UnexpectedValueException;
 
 /**
  * Abstract endpoint implementation.
  *
- * @package Swiftype\Endpoint
- *
+ * @package Elastic\OpenApi\Codegen\Endpoint
  * @author  Aurélien FOUCRET <aurelien.foucret@elastic.co>
+* @license http://www.apache.org/licenses/LICENSE-2.0 Apache2
  */
 abstract class AbstractEndpoint implements EndpointInterface
 {

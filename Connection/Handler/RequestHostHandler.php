@@ -1,19 +1,19 @@
 <?php
 /**
- * This file is part of the Swiftype PHP Client package.
+ * This file is part of the Elastic OpenAPI PHP code generator.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
-namespace Swiftype\Connection\Handler;
+namespace Elastic\OpenApi\Codegen\Connection\Handler;
 
 /**
  * This handler add automatically all URIs data to the request.
  *
- * @package Swiftype\Connection\Handler
- *
+ * @package Elastic\OpenApi\Codegen\Connection\Handler
  * @author  Aurélien FOUCRET <aurelien.foucret@elastic.co>
+* @license http://www.apache.org/licenses/LICENSE-2.0 Apache2
  */
 class RequestHostHandler
 {

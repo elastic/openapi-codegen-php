@@ -1,4 +1,4 @@
-package com.swiftype.codegen;
+package org.elasticsearch.codegen;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,19 +20,19 @@ import io.swagger.v3.oas.models.Operation;
 import io.swagger.v3.oas.models.media.Schema;
 import io.swagger.v3.oas.models.parameters.Parameter;
 
-public class SwiftypePhpGenerator extends PhpClientCodegen implements CodegenConfig {
+public class ElasticClientPhpGenerator extends PhpClientCodegen implements CodegenConfig {
 
-  public static final String GENERATOR_NAME = "swiftype-php";
+  public static final String GENERATOR_NAME = "elastic-php-client";
   public static final String HELP_URL       = "helpUrl";
   public static final String COPYRIGHT      = "copyright";
 
-  public SwiftypePhpGenerator() {
+  public ElasticClientPhpGenerator() {
     super();
-    
+
     cliOptions.add(new CliOption(HELP_URL, "Help URL"));
     cliOptions.add(new CliOption(COPYRIGHT, "Copyright"));
 
-    this.setTemplateDir(SwiftypePhpGenerator.GENERATOR_NAME);
+    this.setTemplateDir(ElasticClientPhpGenerator.GENERATOR_NAME);
     this.setSrcBasePath("");
     this.embeddedTemplateDir = this.templateDir();
 
@@ -57,7 +57,7 @@ public class SwiftypePhpGenerator extends PhpClientCodegen implements CodegenCon
 
   @Override
   public String getName() {
-    return SwiftypePhpGenerator.GENERATOR_NAME;
+    return ElasticClientPhpGenerator.GENERATOR_NAME;
   }
 
   @Override

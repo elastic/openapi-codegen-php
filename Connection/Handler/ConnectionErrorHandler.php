@@ -1,24 +1,24 @@
 <?php
 /**
- * This file is part of the Swiftype Common PHP Client package.
+ * This file is part of the Elastic OpenAPI PHP code generator.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
-namespace Swiftype\Connection\Handler;
+namespace Elastic\OpenApi\Codegen\Connection\Handler;
 
-use Swiftype\Exception\ConnectionException;
-use Swiftype\Exception\CouldNotConnectToHostException;
-use Swiftype\Exception\CouldNotResolveHostException;
-use Swiftype\Exception\OperationTimeoutException;
+use Elastic\OpenApi\Codegen\Exception\ConnectionException;
+use Elastic\OpenApi\Codegen\Exception\CouldNotConnectToHostException;
+use Elastic\OpenApi\Codegen\Exception\CouldNotResolveHostException;
+use Elastic\OpenApi\Codegen\Exception\OperationTimeoutException;
 
 /**
  * This handler manage connections errors and throw comprehensive exceptions to the user.
  *
- * @package Swiftype\Connection\Handler
- *
+ * @package Elastic\OpenApi\Codegen\Connection\Handler
  * @author  Aurélien FOUCRET <aurelien.foucret@elastic.co>
+* @license http://www.apache.org/licenses/LICENSE-2.0 Apache2
  */
 class ConnectionErrorHandler
 {

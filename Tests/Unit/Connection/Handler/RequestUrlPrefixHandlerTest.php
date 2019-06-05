@@ -1,22 +1,22 @@
 <?php
 /**
- * This file is part of the Swiftype Common PHP Client package.
+ * This file is part of the Elastic OpenAPI PHP code generator.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
-namespace Swiftype\Tests\Unit\Connection\Handler;
+namespace Elastic\OpenApi\Codegen\Tests\Unit\Connection\Handler;
 
 use PHPUnit\Framework\TestCase;
-use Swiftype\Connection\Handler\RequestUrlPrefixHandler;
+use Elastic\OpenApi\Codegen\Connection\Handler\RequestUrlPrefixHandler;
 
 /**
  * Unit tests for the request url handler.
  *
- * @package Swiftype\Test\Unit\Connection\Handler
- *
+ * @package Elastic\OpenApi\Codegen\Test\Unit\Connection\Handler
  * @author  Aurélien FOUCRET <aurelien.foucret@elastic.co>
+* @license http://www.apache.org/licenses/LICENSE-2.0 Apache2
  */
 class RequestUrlPrefixHandlerTest extends TestCase
 {

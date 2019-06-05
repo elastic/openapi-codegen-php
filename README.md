@@ -1,8 +1,8 @@
-# Swiftype PHP client generator.
+# Elastic OpenAPI PHP client generator.
 
 > Make easier clients creation by generating most of the code from an Open API specification.
 >
-> Projects using the Swiftype PHP client code generator :
+> Projects using the Elastic OpenAPI PHP client generator:
 >
 > * [Elastic Site Search Official PHP client](https://github.com/swiftype/swiftype-site-search-php/)
 > * [Elastic App Search Official PHP client](https://github.com/swiftype/swiftype-app-search-php/)
@@ -49,7 +49,7 @@ Make sure the autoload section contains the PHP namespace you want to use for yo
 Once the project is created , you have to append the code generator as a requirement of the project:
 
 ```bash
-composer require swiftype/swiftype-common-php
+composer require elastic/openapi-codegen
 ```
 
 ### Configuring the generator
@@ -76,7 +76,7 @@ By convention, the code generator expect the `resources/api` folder containing t
 Once the project is setup and the generator is configured, you can run code generation by using the launcher script from the root of your project :
 
 ```
-vendor/bin/swiftype-codegen.sh
+vendor/bin/elastic-openapi-codegen.sh
 ```
 
 The generator will create or update the following files in your project :
@@ -96,7 +96,7 @@ Here is a code for providing a very basic client builder to end users:
 ```php
 namespace Fancy\Client;
 
-class ClientBuilder extends \Swiftype\AbstractClientBuilder
+class ClientBuilder extends \Elastic\OpenApi\Codegen\AbstractClientBuilder
 {
     /**
      * Return the configured client.
@@ -114,14 +114,14 @@ class ClientBuilder extends \Swiftype\AbstractClientBuilder
      */
     protected function getEndpointBuilder()
     {
-        return new \Swiftype\Endpoint\Builder(__NAMESPACE__ . '\Endpoint');
+        return new \Elastic\OpenApi\Codegen\Endpoint\Builder(__NAMESPACE__ . '\Endpoint');
     }
 }
 ```
 
 ## Using the client
 
-Once you will have fulfiled the tasks above, it is very simple for end user to get client they can use :
+Once you will have fulfilled the tasks above, it is very simple for end user to get client they can use :
 
 ```php
 $clientBuilder = new \Fancy\Client\ClientBuilder();
@@ -142,18 +142,18 @@ You can find a full documentation of available extension point in the [Customiza
 
 ### Where do I report issues with the client?
 
-If something is not working as expected, please open an [issue](https://github.com/swiftype/swiftype-common-php/issues/new).
+If something is not working as expected, please open an [issue](https://github.com/elastic/openapi-codegen-php/issues/new).
 
 
 ## Contribute 🚀
 
 We welcome contributors to the project. Before you begin, a couple notes...
 
-+ Before opening a pull request, please create an issue to [discuss the scope of your proposal](https://github.com/swiftype/swiftype-common-php/issues).
++ Before opening a pull request, please create an issue to [discuss the scope of your proposal](https://github.com/elastic/openapi-codegen-php/issues).
 + Please write simple code and concise documentation, when appropriate.
 
 ## License 📗
 
-[Apache 2.0](https://github.com/swiftype/swiftype-common-php/blob/master/LICENSE) © [Elastic](https://github.com/elastic)
+[Apache 2.0](https://github.com/elastic/openapi-codegen-php/blob/master/LICENSE) © [Elastic](https://github.com/elastic)
 
-Thank you to all the [contributors](https://github.com/swiftype/swiftype-common-php/graphs/contributors)!
+Thank you to all the [contributors](https://github.com/elastic/openapi-codegen-php/graphs/contributors)!

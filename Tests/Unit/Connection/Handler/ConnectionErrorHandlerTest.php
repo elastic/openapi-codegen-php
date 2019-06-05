@@ -1,23 +1,23 @@
 <?php
 /**
- * This file is part of the Swiftype Common PHP Client package.
+ * This file is part of the Elastic OpenAPI PHP code generator.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
-namespace Swiftype\Tests\Unit\Connection\Handler;
+namespace Elastic\OpenApi\Codegen\Tests\Unit\Connection\Handler;
 
 use GuzzleHttp\Ring\Future\CompletedFutureArray;
 use PHPUnit\Framework\TestCase;
-use Swiftype\Connection\Handler\ConnectionErrorHandler;
+use Elastic\OpenApi\Codegen\Connection\Handler\ConnectionErrorHandler;
 
 /**
  * Check connection error are turns into comprehensive exceptions by the handler.
  *
- * @package Swiftype\Test\Unit\Connection\Handler
- *
+ * @package Elastic\OpenApi\Codegen\Test\Unit\Connection\Handler
  * @author  Aurélien FOUCRET <aurelien.foucret@elastic.co>
+* @license http://www.apache.org/licenses/LICENSE-2.0 Apache2
  */
 class ConnectionErrornHandlerTest extends TestCase
 {
@@ -54,27 +54,27 @@ class ConnectionErrornHandlerTest extends TestCase
         $data = [
           [
             ['error' => new \Exception('Unknown exception')],
-            \Swiftype\Exception\ConnectionException::class,
+            \Elastic\OpenApi\Codegen\Exception\ConnectionException::class,
             'Unknown exception',
           ],
           [
             ['error' => new \Exception('Unknown exception'), 'curl' => []],
-            \Swiftype\Exception\ConnectionException::class,
+            \Elastic\OpenApi\Codegen\Exception\ConnectionException::class,
             'Unknown exception',
           ],
           [
             ['error' => new \Exception('Could not resolve host'), 'curl' => ['errno' => CURLE_COULDNT_RESOLVE_HOST]],
-            \Swiftype\Exception\CouldNotResolveHostException::class,
+            \Elastic\OpenApi\Codegen\Exception\CouldNotResolveHostException::class,
             'Could not resolve host',
           ],
           [
             ['error' => new \Exception('Could not connect to host'), 'curl' => ['errno' => CURLE_COULDNT_CONNECT]],
-            \Swiftype\Exception\CouldNotConnectToHostException::class,
+            \Elastic\OpenApi\Codegen\Exception\CouldNotConnectToHostException::class,
             'Could not connect to host',
           ],
           [
             ['error' => new \Exception('Timeout exception'), 'curl' => ['errno' => CURLE_OPERATION_TIMEOUTED]],
-            \Swiftype\Exception\OperationTimeoutException::class,
+            \Elastic\OpenApi\Codegen\Exception\OperationTimeoutException::class,
             'Timeout exception',
           ],
           [
