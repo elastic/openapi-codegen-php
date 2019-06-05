@@ -17,7 +17,7 @@ use Elastic\OpenApi\Codegen\Connection\Handler\ConnectionErrorHandler;
  *
  * @package Elastic\OpenApi\Codegen\Test\Unit\Connection\Handler
  * @author  Aurélien FOUCRET <aurelien.foucret@elastic.co>
-* @license http://www.apache.org/licenses/LICENSE-2.0 Apache2
+ * @license http://www.apache.org/licenses/LICENSE-2.0 Apache2
  */
 class ConnectionErrornHandlerTest extends TestCase
 {

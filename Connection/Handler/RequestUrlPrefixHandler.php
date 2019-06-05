@@ -13,7 +13,7 @@ namespace Elastic\OpenApi\Codegen\Connection\Handler;
  *
  * @package Elastic\OpenApi\Codegen\Connection\Handler
  * @author  Aurélien FOUCRET <aurelien.foucret@elastic.co>
-* @license http://www.apache.org/licenses/LICENSE-2.0 Apache2
+ * @license http://www.apache.org/licenses/LICENSE-2.0 Apache2
  */
 class RequestUrlPrefixHandler
 {
