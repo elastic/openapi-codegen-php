@@ -34,6 +34,6 @@
     ]
   },
   "bin": [
-      "resources/dev/swiftype-codegen.sh"
+      "resources/dev/elastic-openapi-codegen.sh"
   ]
 }

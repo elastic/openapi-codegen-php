@@ -12,7 +12,7 @@ FROM openapitools/openapi-generator-cli:v3.3.4 as runner
 
 ENV OPENAPI_GEN_ROOT_DIR /opt/openapi-generator
 ENV OPENAPI_GEN_JARS_DIR ${OPENAPI_GEN_ROOT_DIR}/jars
-ENV OPENAPI_GEN_NAME     swiftype-php-openapi-generator
+ENV OPENAPI_GEN_NAME     elastic-openapi-codegen-php
 
 RUN mkdir -p ${OPENAPI_GEN_JARS_DIR} && cp ${OPENAPI_GEN_ROOT_DIR}/modules/openapi-generator-cli/target/*.jar ${OPENAPI_GEN_JARS_DIR}
 
