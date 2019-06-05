@@ -13,6 +13,7 @@ namespace Elastic\OpenApi\Codegen\Endpoint;
  *
  * @package Elastic\OpenApi\Codegen\Endpoint
  * @author  Aurélien FOUCRET <aurelien.foucret@elastic.co>
+* @license http://www.apache.org/licenses/LICENSE-2.0 Apache2
  */
 class Builder
 {

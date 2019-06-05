@@ -15,6 +15,7 @@ use Elastic\OpenApi\Codegen\Exception\JsonErrorException;
  *
  * @package Elastic\OpenApi\Codegen\Serializer
  * @author  Aurélien FOUCRET <aurelien.foucret@elastic.co>
+* @license http://www.apache.org/licenses/LICENSE-2.0 Apache2
  */
 class SmartSerializer implements SerializerInterface
 {

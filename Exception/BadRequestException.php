@@ -13,6 +13,7 @@ namespace Elastic\OpenApi\Codegen\Exception;
  *
  * @package Elastic\OpenApi\Codegen\Exception
  * @author  Aurélien FOUCRET <aurelien.foucret@elastic.co>
+* @license http://www.apache.org/licenses/LICENSE-2.0 Apache2
  */
 class BadRequestException extends ApiException implements ClientException
 {
