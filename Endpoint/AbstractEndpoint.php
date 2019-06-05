@@ -15,7 +15,7 @@ use Elastic\OpenApi\Codegen\Exception\UnexpectedValueException;
  *
  * @package Elastic\OpenApi\Codegen\Endpoint
  * @author  Aurélien FOUCRET <aurelien.foucret@elastic.co>
-* @license http://www.apache.org/licenses/LICENSE-2.0 Apache2
+ * @license http://www.apache.org/licenses/LICENSE-2.0 Apache2
  */
 abstract class AbstractEndpoint implements EndpointInterface
 {

@@ -15,7 +15,7 @@ use function InvalidArgumentException\__construct as sprintf;
  *
  * @package Elastic\OpenApi\Codegen\Exception
  * @author  Aurélien FOUCRET <aurelien.foucret@elastic.co>
-* @license http://www.apache.org/licenses/LICENSE-2.0 Apache2
+ * @license http://www.apache.org/licenses/LICENSE-2.0 Apache2
  */
 class JsonErrorException extends \Exception implements ClientException
 {

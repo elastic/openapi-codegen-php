@@ -15,7 +15,7 @@ use Psr\Log\LoggerInterface;
  *
  * @package Elastic\OpenApi\Codegen\Connection
  * @author  Aurélien FOUCRET <aurelien.foucret@elastic.co>
-* @license http://www.apache.org/licenses/LICENSE-2.0 Apache2
+ * @license http://www.apache.org/licenses/LICENSE-2.0 Apache2
  */
 class Connection
 {
