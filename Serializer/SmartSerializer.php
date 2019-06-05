@@ -6,14 +6,14 @@
  * file that was distributed with this source code.
  */
 
-namespace Swiftype\Serializer;
+namespace Elastic\OpenApi\Codegen\Serializer;
 
-use Swiftype\Exception\JsonErrorException;
+use Elastic\OpenApi\Codegen\Exception\JsonErrorException;
 
 /**
  * Default serializer used by the client.
  *
- * @package Swiftype\Serializer
+ * @package Elastic\OpenApi\Codegen\Serializer
  * @author  Aurélien FOUCRET <aurelien.foucret@elastic.co>
  */
 class SmartSerializer implements SerializerInterface

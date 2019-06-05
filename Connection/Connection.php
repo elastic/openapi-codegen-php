@@ -6,14 +6,14 @@
  * file that was distributed with this source code.
  */
 
-namespace Swiftype\Connection;
+namespace Elastic\OpenApi\Codegen\Connection;
 
 use Psr\Log\LoggerInterface;
 
 /**
- * Connection bring HTTP connectivity to the Swiftype HTTP API.
+ * Connection bring HTTP connectivity to the HTTP API.
  *
- * @package Swiftype\Connection
+ * @package Elastic\OpenApi\Codegen\Connection
  * @author  Aurélien FOUCRET <aurelien.foucret@elastic.co>
  */
 class Connection

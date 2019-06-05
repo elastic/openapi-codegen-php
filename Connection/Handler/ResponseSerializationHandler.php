@@ -6,14 +6,14 @@
  * file that was distributed with this source code.
  */
 
-namespace Swiftype\Connection\Handler;
+namespace Elastic\OpenApi\Codegen\Connection\Handler;
 
-use Swiftype\Serializer\SerializerInterface;
+use Elastic\OpenApi\Codegen\Serializer\SerializerInterface;
 
 /**
  * Automatatic serialization of the request params and body.
  *
- * @package Swiftype\Connection\Handler
+ * @package Elastic\OpenApi\Codegen\Connection\Handler
  * @author  Aurélien FOUCRET <aurelien.foucret@elastic.co>
  */
 class ResponseSerializationHandler

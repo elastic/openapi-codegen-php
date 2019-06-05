@@ -6,17 +6,17 @@
  * file that was distributed with this source code.
  */
 
-namespace Swiftype\Connection\Handler;
+namespace Elastic\OpenApi\Codegen\Connection\Handler;
 
-use Swiftype\Exception\ConnectionException;
-use Swiftype\Exception\CouldNotConnectToHostException;
-use Swiftype\Exception\CouldNotResolveHostException;
-use Swiftype\Exception\OperationTimeoutException;
+use Elastic\OpenApi\Codegen\Exception\ConnectionException;
+use Elastic\OpenApi\Codegen\Exception\CouldNotConnectToHostException;
+use Elastic\OpenApi\Codegen\Exception\CouldNotResolveHostException;
+use Elastic\OpenApi\Codegen\Exception\OperationTimeoutException;
 
 /**
  * This handler manage connections errors and throw comprehensive exceptions to the user.
  *
- * @package Swiftype\Connection\Handler
+ * @package Elastic\OpenApi\Codegen\Connection\Handler
  * @author  Aurélien FOUCRET <aurelien.foucret@elastic.co>
  */
 class ConnectionErrorHandler

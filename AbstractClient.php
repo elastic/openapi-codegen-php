@@ -6,14 +6,14 @@
  * file that was distributed with this source code.
  */
 
-namespace Swiftype;
+namespace Elastic\OpenApi\Codegen;
 
-use Swiftype\Connection\Connection;
+use Elastic\OpenApi\Codegen\Connection\Connection;
 
 /**
  * A base client implementation implemented by the generator.
  *
- * @package Swiftype
+ * @package Elastic\OpenApi\Codegen
  * @author  Aurélien FOUCRET <aurelien.foucret@elastic.co>
  */
 abstract class AbstractClient

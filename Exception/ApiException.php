@@ -6,14 +6,14 @@
  * file that was distributed with this source code.
  */
 
-namespace Swiftype\Exception;
+namespace Elastic\OpenApi\Codegen\Exception;
 
 /**
  * Exception thrown when something goes bad on the server.
  *
- * @package Swiftype\Exception
+ * @package Elastic\OpenApi\Codegen\Exception
  * @author  Aurélien FOUCRET <aurelien.foucret@elastic.co>
  */
-class ApiException extends ConnectionException implements SwiftypeException
+class ApiException extends ConnectionException implements ClientException
 {
 }

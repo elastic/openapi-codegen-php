@@ -6,14 +6,14 @@
  * file that was distributed with this source code.
  */
 
-namespace Swiftype\Exception;
+namespace Elastic\OpenApi\Codegen\Exception;
 
 /**
  * Exception raised when the client can not resolve the hostname specified.
  *
- * @package Swiftype\Exception
+ * @package Elastic\OpenApi\Codegen\Exception
  * @author  Aurélien FOUCRET <aurelien.foucret@elastic.co>
  */
-class CouldNotResolveHostException extends ConnectionException implements SwiftypeException
+class CouldNotResolveHostException extends ConnectionException implements ClientException
 {
 }

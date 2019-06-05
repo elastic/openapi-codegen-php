@@ -6,12 +6,12 @@
  * file that was distributed with this source code.
  */
 
-namespace Swiftype\Connection\Handler;
+namespace Elastic\OpenApi\Codegen\Connection\Handler;
 
 /**
  * This handler add automatically all URIs data to the request.
  *
- * @package Swiftype\Connection\Handler
+ * @package Elastic\OpenApi\Codegen\Connection\Handler
  * @author  Aurélien FOUCRET <aurelien.foucret@elastic.co>
  */
 class RequestHostHandler

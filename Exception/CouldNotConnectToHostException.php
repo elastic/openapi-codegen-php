@@ -6,14 +6,14 @@
  * file that was distributed with this source code.
  */
 
-namespace Swiftype\Exception;
+namespace Elastic\OpenApi\Codegen\Exception;
 
 /**
  * Exception raised when the client can not connect to the host specified.
  *
- * @package Swiftype\Exception
+ * @package Elastic\OpenApi\Codegen\Exception
  * @author  Aurélien FOUCRET <aurelien.foucret@elastic.co>
  */
-class CouldNotConnectToHostException extends ConnectionException implements SwiftypeException
+class CouldNotConnectToHostException extends ConnectionException implements ClientException
 {
 }

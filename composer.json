@@ -27,7 +27,7 @@
   },
   "autoload" : {
     "psr-4" : {
-      "Swiftype\\" : ""
+      "Elastic\\OpenApi\\Codegen\\" : ""
     },
     "exclude-from-classmap" : [
       "/Tests/"

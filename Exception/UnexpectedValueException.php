@@ -6,14 +6,14 @@
  * file that was distributed with this source code.
  */
 
-namespace Swiftype\Exception;
+namespace Elastic\OpenApi\Codegen\Exception;
 
 /**
  * Denote a value that is outside the normally accepted values.
  *
- * @package Swiftype\Exception
+ * @package Elastic\OpenApi\Codegen\Exception
  * @author  Aurélien FOUCRET <aurelien.foucret@elastic.co>
  */
-class UnexpectedValueException extends \UnexpectedValueException implements SwiftypeException
+class UnexpectedValueException extends \UnexpectedValueException implements ClientException
 {
 }

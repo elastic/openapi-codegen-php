@@ -6,12 +6,12 @@
  * file that was distributed with this source code.
  */
 
-namespace Swiftype;
+namespace Elastic\OpenApi\Codegen;
 
 /**
  * A base client builder implementation.
  *
- * @package Swiftype
+ * @package Elastic\OpenApi\Codegen
  * @author  Aurélien FOUCRET <aurelien.foucret@elastic.co>
  */
 abstract class AbstractClientBuilder
@@ -27,7 +27,7 @@ abstract class AbstractClientBuilder
     private $tracer;
 
     /**
-     * @var \Swiftype\Serializer\SerializerInterface
+     * @var \Elastic\OpenApi\Codegen\Serializer\SerializerInterface
      */
     private $serializer;
 
@@ -41,13 +41,13 @@ abstract class AbstractClientBuilder
      */
     public function __construct()
     {
-        $this->serializer = new \Swiftype\Serializer\SmartSerializer();
+        $this->serializer = new \Elastic\OpenApi\Codegen\Serializer\SmartSerializer();
         $this->logger = new \Psr\Log\NullLogger();
         $this->tracer = new \Psr\Log\NullLogger();
     }
 
     /**
-     * @return \Swiftype\Serializer\SerializerInterface
+     * @return \Elastic\OpenApi\Codegen\Serializer\SerializerInterface
      */
     public function getSerializer()
     {
@@ -71,11 +71,11 @@ abstract class AbstractClientBuilder
     }
 
     /**
-     * @param \Swiftype\Serializer\SerializerInterface $serializer
+     * @param \Elastic\OpenApi\Codegen\Serializer\SerializerInterface $serializer
      *
      * @return $this
      */
-    public function setSerializer(\Swiftype\Serializer\SerializerInterface $serializer)
+    public function setSerializer(\Elastic\OpenApi\Codegen\Serializer\SerializerInterface $serializer)
     {
         $this->serializer = $serializer;
 
@@ -139,7 +139,7 @@ abstract class AbstractClientBuilder
     }
 
     /**
-     * @return \Swiftype\Connection\Connection
+     * @return \Elastic\OpenApi\Codegen\Connection\Connection
      */
     protected function getConnection()
     {
@@ -147,7 +147,7 @@ abstract class AbstractClientBuilder
     }
 
     /**
-     * @return \Swiftype\Endpoint\Builder
+     * @return \Elastic\OpenApi\Codegen\Endpoint\Builder
      */
     abstract protected function getEndpointBuilder();
 }

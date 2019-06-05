@@ -6,14 +6,14 @@
  * file that was distributed with this source code.
  */
 
-namespace Swiftype\Exception;
+namespace Elastic\OpenApi\Codegen\Exception;
 
 /**
  * Wrapper for exceptions raised by the client.
  *
- * @package Swiftype\Exception
+ * @package Elastic\OpenApi\Codegen\Exception
  * @author  Aurélien FOUCRET <aurelien.foucret@elastic.co>
  */
-interface SwiftypeException
+interface ClientException
 {
 }

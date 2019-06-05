@@ -6,14 +6,14 @@
  * file that was distributed with this source code.
  */
 
-namespace Swiftype\Endpoint;
+namespace Elastic\OpenApi\Codegen\Endpoint;
 
-use Swiftype\Exception\UnexpectedValueException;
+use Elastic\OpenApi\Codegen\Exception\UnexpectedValueException;
 
 /**
  * Abstract endpoint implementation.
  *
- * @package Swiftype\Endpoint
+ * @package Elastic\OpenApi\Codegen\Endpoint
  * @author  Aurélien FOUCRET <aurelien.foucret@elastic.co>
  */
 abstract class AbstractEndpoint implements EndpointInterface

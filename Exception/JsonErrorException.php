@@ -6,17 +6,17 @@
  * file that was distributed with this source code.
  */
 
-namespace Swiftype\Exception;
+namespace Elastic\OpenApi\Codegen\Exception;
 
 use function InvalidArgumentException\__construct as sprintf;
 
 /**
  * JSON error handling providing human friendly messages.
  *
- * @package Swiftype\Exception
+ * @package Elastic\OpenApi\Codegen\Exception
  * @author  Aurélien FOUCRET <aurelien.foucret@elastic.co>
  */
-class JsonErrorException extends \Exception implements SwiftypeException
+class JsonErrorException extends \Exception implements ClientException
 {
     /**
      * @var mixed

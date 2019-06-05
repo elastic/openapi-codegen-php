@@ -6,12 +6,12 @@
  * file that was distributed with this source code.
  */
 
-namespace Swiftype\Endpoint;
+namespace Elastic\OpenApi\Codegen\Endpoint;
 
 /**
  * Endpoint builder implementation.
  *
- * @package Swiftype\Endpoint
+ * @package Elastic\OpenApi\Codegen\Endpoint
  * @author  Aurélien FOUCRET <aurelien.foucret@elastic.co>
  */
 class Builder

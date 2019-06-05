@@ -6,17 +6,17 @@
  * file that was distributed with this source code.
  */
 
-namespace Swiftype\Tests\Unit\Connection\Handler;
+namespace Elastic\OpenApi\Codegen\Tests\Unit\Connection\Handler;
 
 use GuzzleHttp\Ring\Future\CompletedFutureArray;
 use PHPUnit\Framework\TestCase;
-use Swiftype\Connection\Handler\ResponseSerializationHandler;
-use Swiftype\Serializer\SmartSerializer;
+use Elastic\OpenApi\Codegen\Connection\Handler\ResponseSerializationHandler;
+use Elastic\OpenApi\Codegen\Serializer\SmartSerializer;
 
 /**
  * Unit tests for the response serialization handler.
  *
- * @package Swiftype\Test\Unit\Connection\Handler
+ * @package Elastic\OpenApi\Codegen\Test\Unit\Connection\Handler
  * @author  Aurélien FOUCRET <aurelien.foucret@elastic.co>
  */
 class ResponseSerializationHandlerTest extends TestCase
@@ -57,7 +57,7 @@ class ResponseSerializationHandlerTest extends TestCase
     }
 
     /**
-     * @return \Swiftype\Connection\Handler\RequestSerializationHandler
+     * @return \Elastic\OpenApi\Codegen\Connection\Handler\RequestSerializationHandler
      */
     private function getHandler($body)
     {
@@ -76,7 +76,7 @@ class ResponseSerializationHandlerTest extends TestCase
     }
 
     /**
-     * @return \Swiftype\Serializer\SmartSerializer
+     * @return \Elastic\OpenApi\Codegen\Serializer\SmartSerializer
      */
     private function getSerializer()
     {

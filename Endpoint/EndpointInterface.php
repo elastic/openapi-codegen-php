@@ -6,12 +6,12 @@
  * file that was distributed with this source code.
  */
 
-namespace Swiftype\Endpoint;
+namespace Elastic\OpenApi\Codegen\Endpoint;
 
 /**
  * API endpoint interface.
  *
- * @package Swiftype
+ * @package Elastic\OpenApi\Codegen
  * @author  Aurélien FOUCRET <aurelien.foucret@elastic.co>
  */
 interface EndpointInterface
