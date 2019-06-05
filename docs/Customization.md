@@ -2,7 +2,7 @@
 
 ## Customizing templates
 
-The code and documentation are generated from jMustache templates available in `resources/dev/swiftype-php-codegen/src/main/resources/swiftype-php` :
+The code and documentation are generated from jMustache templates available in `resources/dev/elastic-openapi-codegen-php/src/main/resources/elastic-php-client` :
 
 Generated file   | Template file      | Description
 ---------------- | -------------------| ----------------------
