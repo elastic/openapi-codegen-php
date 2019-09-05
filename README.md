@@ -1,5 +1,7 @@
 # Elastic OpenAPI PHP client generator.
 
+<p align="center"><a href="https://circleci.com/gh/elastic/openapi-codegen-php"><img src="https://circleci.com/gh/elastic/openapi-codegen-php.svg?style=svg" alt="CircleCI build"></a></p>
+
 > Make easier clients creation by generating most of the code from an Open API specification.
 >
 > Projects using the Elastic OpenAPI PHP client generator:
