@@ -4,8 +4,8 @@
 >
 > Projects using the Elastic OpenAPI PHP client generator:
 >
-> * [Elastic Site Search Official PHP client](https://github.com/swiftype/swiftype-site-search-php/)
-> * [Elastic App Search Official PHP client](https://github.com/swiftype/swiftype-app-search-php/)
+> * [Elastic Site Search Official PHP client](https://github.com/elastic/site-search-php/)
+> * [Elastic App Search Official PHP client](https://github.com/elastic/app-search-php/)
 
 
 ## Contents
