@@ -9,6 +9,7 @@
 namespace Elastic\OpenApi\Codegen\Connection\Handler;
 
 use Elastic\OpenApi\Codegen\Serializer\SerializerInterface;
+use GuzzleHttp\Ring\Core as GuzzleCore;
 
 /**
  * Automatatic serialization of the request params and body.
@@ -30,7 +31,7 @@ class ResponseSerializationHandler
     private $serializer;
 
     /**
-     * @var \GuzzleHttp\Ring\Core
+     * @var GuzzleCore
      */
     private $ringUtils;
 
@@ -44,9 +45,16 @@ class ResponseSerializationHandler
     {
         $this->handler = $handler;
         $this->serializer = $serializer;
-        $this->ringUtils = new \GuzzleHttp\Ring\Core();
+        $this->ringUtils = new GuzzleCore();
     }
 
+    /**
+     * Unseriallize the response body to an array.
+     *
+     * @param array $request original request
+     *
+     * @return array
+     */
     public function __invoke($request)
     {
         $handler = $this->handler;

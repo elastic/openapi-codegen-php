@@ -12,6 +12,7 @@ use Elastic\OpenApi\Codegen\Exception\ConnectionException;
 use Elastic\OpenApi\Codegen\Exception\CouldNotConnectToHostException;
 use Elastic\OpenApi\Codegen\Exception\CouldNotResolveHostException;
 use Elastic\OpenApi\Codegen\Exception\OperationTimeoutException;
+use GuzzleHttp\Ring\Core as GuzzleCore;
 
 /**
  * This handler manage connections errors and throw comprehensive exceptions to the user.
@@ -29,7 +30,7 @@ class ConnectionErrorHandler
 
 
     /**
-     * @var \GuzzleHttp\Ring\Core
+     * @var GuzzleCore
      */
     private $ringUtils;
 
@@ -41,7 +42,7 @@ class ConnectionErrorHandler
     public function __construct(callable $handler)
     {
         $this->handler   = $handler;
-        $this->ringUtils = new \GuzzleHttp\Ring\Core();
+        $this->ringUtils = new GuzzleCore();
     }
 
     /**

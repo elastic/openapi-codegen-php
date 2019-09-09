@@ -8,6 +8,18 @@
 
 namespace Elastic\OpenApi\Codegen;
 
+use Elastic\OpenApi\Codegen\Serializer\SerializerInterface;
+use Elastic\OpenApi\Codegen\Serializer\SmartSerializer;
+use Psr\Log\LoggerInterface;
+use Psr\Log\NullLogger;
+use GuzzleHttp\Ring\Client\CurlHandler;
+use Elastic\OpenApi\Codegen\Connection\Connection;
+use Elastic\OpenApi\Codegen\Connection\Handler\RequestSerializationHandler;
+use Elastic\OpenApi\Codegen\Connection\Handler\RequestHostHandler;
+use Elastic\OpenApi\Codegen\Connection\Handler\ConnectionErrorHandler;
+use Elastic\OpenApi\Codegen\Connection\Handler\ResponseSerializationHandler;
+use Elastic\OpenApi\Codegen\Endpoint\Builder as EndpointBuilder;
+
 /**
  * A base client builder implementation.
  *
@@ -28,7 +40,7 @@ abstract class AbstractClientBuilder
     private $tracer;
 
     /**
-     * @var \Elastic\OpenApi\Codegen\Serializer\SerializerInterface
+     * @var SerializerInterface
      */
     private $serializer;
 
@@ -42,13 +54,13 @@ abstract class AbstractClientBuilder
      */
     public function __construct()
     {
-        $this->serializer = new \Elastic\OpenApi\Codegen\Serializer\SmartSerializer();
-        $this->logger = new \Psr\Log\NullLogger();
-        $this->tracer = new \Psr\Log\NullLogger();
+        $this->serializer = SmartSerializer();
+        $this->logger = new NullLogger();
+        $this->tracer = new NullLogger();
     }
 
     /**
-     * @return \Elastic\OpenApi\Codegen\Serializer\SerializerInterface
+     * @return SerializerInterface
      */
     public function getSerializer()
     {
@@ -56,7 +68,7 @@ abstract class AbstractClientBuilder
     }
 
     /**
-     * @return \Psr\Log\LoggerInterface
+     * @return LoggerInterface
      */
     public function getLogger()
     {
@@ -64,7 +76,7 @@ abstract class AbstractClientBuilder
     }
 
     /**
-     * @return \Psr\Log\LoggerInterface
+     * @return LoggerInterface
      */
     public function getTracer()
     {
@@ -72,11 +84,11 @@ abstract class AbstractClientBuilder
     }
 
     /**
-     * @param \Elastic\OpenApi\Codegen\Serializer\SerializerInterface $serializer
+     * @param SerializerInterface $serializer
      *
      * @return $this
      */
-    public function setSerializer(\Elastic\OpenApi\Codegen\Serializer\SerializerInterface $serializer)
+    public function setSerializer(SerializerInterface $serializer)
     {
         $this->serializer = $serializer;
 
@@ -84,11 +96,11 @@ abstract class AbstractClientBuilder
     }
 
     /**
-     * @param \Psr\Log\LoggerInterface $logger
+     * @param LoggerInterface $logger
      *
      * @return $this
      */
-    public function setLogger(\Psr\Log\LoggerInterface $logger)
+    public function setLogger(LoggerInterface $logger)
     {
         $this->logger = $logger;
 
@@ -96,11 +108,11 @@ abstract class AbstractClientBuilder
     }
 
     /**
-     * @param \Psr\Log\LoggerInterface $tracer
+     * @param LoggerInterface $tracer
      *
      * @return $this
      */
-    public function setTracer(\Psr\Log\LoggerInterface $tracer)
+    public function setTracer(LoggerInterface $tracer)
     {
         $this->tracer = $tracer;
 
@@ -129,26 +141,26 @@ abstract class AbstractClientBuilder
      */
     protected function getHandler()
     {
-        $handler = new \GuzzleHttp\Ring\Client\CurlHandler();
+        $handler = new CurlHandler();
 
-        $handler = new Connection\Handler\RequestSerializationHandler($handler, $this->serializer);
-        $handler = new Connection\Handler\RequestHostHandler($handler, $this->host);
-        $handler = new Connection\Handler\ConnectionErrorHandler($handler);
-        $handler = new Connection\Handler\ResponseSerializationHandler($handler, $this->serializer);
+        $handler = new RequestSerializationHandler($handler, $this->serializer);
+        $handler = new RequestHostHandler($handler, $this->host);
+        $handler = new ConnectionErrorHandler($handler);
+        $handler = new ResponseSerializationHandler($handler, $this->serializer);
 
         return $handler;
     }
 
     /**
-     * @return \Elastic\OpenApi\Codegen\Connection\Connection
+     * @return Connection
      */
     protected function getConnection()
     {
-        return new Connection\Connection($this->getHandler(), $this->getLogger(), $this->getTracer());
+        return new Connection($this->getHandler(), $this->getLogger(), $this->getTracer());
     }
 
     /**
-     * @return \Elastic\OpenApi\Codegen\Endpoint\Builder
+     * @return EndpointBuilder
      */
     abstract protected function getEndpointBuilder();
 }

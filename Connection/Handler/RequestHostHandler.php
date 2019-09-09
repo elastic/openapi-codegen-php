@@ -8,6 +8,8 @@
 
 namespace Elastic\OpenApi\Codegen\Connection\Handler;
 
+use GuzzleHttp\Ring\Core as GuzzleCore;
+
 /**
  * This handler add automatically all URIs data to the request.
  *
@@ -33,7 +35,7 @@ class RequestHostHandler
     private $scheme;
 
     /**
-     * @var \GuzzleHttp\Ring\Core
+     * @var GuzzleCore
      */
     private $ringUtils;
 
@@ -56,7 +58,7 @@ class RequestHostHandler
             $this->host = sprintf('%s:%s', $this->host, $urlComponents['port']);
         }
 
-        $this->ringUtils = new \GuzzleHttp\Ring\Core();
+        $this->ringUtils = new GuzzleCore();
     }
 
     /**
