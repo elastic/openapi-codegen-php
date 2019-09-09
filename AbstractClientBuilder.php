@@ -54,7 +54,7 @@ abstract class AbstractClientBuilder
      */
     public function __construct()
     {
-        $this->serializer = SmartSerializer();
+        $this->serializer = new SmartSerializer();
         $this->logger = new NullLogger();
         $this->tracer = new NullLogger();
     }
