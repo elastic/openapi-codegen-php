@@ -8,7 +8,7 @@
 
 namespace Elastic\OpenApi\Codegen\Exception;
 
-use function InvalidArgumentException\__construct as sprintf;
+use function InvalidArgumentException;
 
 /**
  * JSON error handling providing human friendly messages.
@@ -58,7 +58,7 @@ class JsonErrorException extends \Exception implements ClientException
     public function __construct($code, $input, $result, $previous = null)
     {
         if (true !== isset(self::$messages[$code])) {
-            throw new \InvalidArgumentException(sprintf('Encountered unknown JSON error code: [%d]', $code));
+            throw new InvalidArgumentException(sprintf('Encountered unknown JSON error code: [%d]', $code));
         }
 
         parent::__construct(self::$messages[$code], $code, $previous);

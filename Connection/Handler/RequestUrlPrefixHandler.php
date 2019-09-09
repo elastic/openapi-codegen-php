@@ -7,6 +7,7 @@
  */
 
 namespace Elastic\OpenApi\Codegen\Connection\Handler;
+use GuzzleHttp\Ring\Core as GuzzleCore;
 
 /**
  * This handler add automatically all URIs data to the request.
@@ -28,7 +29,7 @@ class RequestUrlPrefixHandler
     private $handler;
 
     /**
-     * @var \GuzzleHttp\Ring\Core
+     * @var GuzzleCore
      */
     private $ringUtils;
 
@@ -42,7 +43,7 @@ class RequestUrlPrefixHandler
     {
         $this->handler   = $handler;
         $this->uriPrefix = $uriPrefix;
-        $this->ringUtils = new \GuzzleHttp\Ring\Core();
+        $this->ringUtils = new GuzzleCore();
     }
 
     /**

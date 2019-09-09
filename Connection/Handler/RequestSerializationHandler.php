@@ -9,6 +9,7 @@
 namespace Elastic\OpenApi\Codegen\Connection\Handler;
 
 use Elastic\OpenApi\Codegen\Serializer\SerializerInterface;
+use GuzzleHttp\Ring\Core as GuzzleCore;
 
 /**
  * Automatatic unserialization of the response.
@@ -30,7 +31,7 @@ class RequestSerializationHandler
     private $serializer;
 
     /**
-     * @var \GuzzleHttp\Ring\Core
+     * @var GuzzleCore
      */
     private $ringUtils;
 
@@ -44,7 +45,7 @@ class RequestSerializationHandler
     {
         $this->handler = $handler;
         $this->serializer = $serializer;
-        $this->ringUtils = new \GuzzleHttp\Ring\Core();
+        $this->ringUtils = new GuzzleCore();
     }
 
     public function __invoke($request)
