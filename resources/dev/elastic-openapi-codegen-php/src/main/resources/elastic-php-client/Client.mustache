@@ -8,7 +8,7 @@ namespace {{invokerPackage}};
  *
  * @package {{invokerPackage}}
  */
-class Client extends \Elastic\OpenApi\Codegen\AbstractClient
+{{#clientClassQualifier}}{{{.}}} {{/clientClassQualifier}}class {{clientClass}} extends \Elastic\OpenApi\Codegen\AbstractClient
 {
     // phpcs:disable
 {{#apiInfo}}{{#apis}}{{#operations}}{{#operation}}
@@ -31,7 +31,7 @@ class Client extends \Elastic\OpenApi\Codegen\AbstractClient
      *
      * @return array
      */
-    public function {{operationId}}({{#allParams}}${{paramName}}{{^required}} = {{#defaultValue}}{{{.}}}{{/defaultValue}}{{^defaultValue}}null{{/defaultValue}}{{/required}}{{#hasMore}}, {{/hasMore}}{{/allParams}})
+    {{vendorExtensions.x-operation-scope}} function {{operationId}}({{#allParams}}${{paramName}}{{^required}} = {{#defaultValue}}{{{.}}}{{/defaultValue}}{{^defaultValue}}null{{/defaultValue}}{{/required}}{{#hasMore}}, {{/hasMore}}{{/allParams}})
     {
 {{#allParams.0}}
         $params = [
