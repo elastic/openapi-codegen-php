@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of the Elastic OpenAPI PHP code generator.
  *
@@ -7,6 +8,7 @@
  */
 
 namespace Elastic\OpenApi\Codegen\Connection\Handler;
+
 use GuzzleHttp\Ring\Core as GuzzleCore;
 
 /**

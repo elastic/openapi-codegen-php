@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of the Elastic OpenAPI PHP code generator.
  *
