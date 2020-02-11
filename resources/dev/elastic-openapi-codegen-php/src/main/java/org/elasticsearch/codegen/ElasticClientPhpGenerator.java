@@ -1,24 +1,24 @@
 package org.elasticsearch.codegen;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Locale;
-import java.util.Map;
-import java.util.Set;
+import io.swagger.v3.oas.models.OpenAPI;
+import io.swagger.v3.oas.models.Operation;
+import io.swagger.v3.oas.models.media.Schema;
+import io.swagger.v3.oas.models.parameters.Parameter;
+import io.swagger.v3.oas.models.parameters.RequestBody;
+
+import java.util.*;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.StringUtils;
 import org.openapitools.codegen.CliOption;
 import org.openapitools.codegen.CodegenConfig;
 import org.openapitools.codegen.CodegenOperation;
-import org.openapitools.codegen.CodegenType;
 import org.openapitools.codegen.CodegenParameter;
+import org.openapitools.codegen.CodegenType;
 import org.openapitools.codegen.SupportingFile;
 import org.openapitools.codegen.languages.PhpClientCodegen;
 import org.openapitools.codegen.utils.ModelUtils;
-
-import io.swagger.v3.oas.models.Operation;
-import io.swagger.v3.oas.models.media.Schema;
-import io.swagger.v3.oas.models.parameters.Parameter;
 
 public class ElasticClientPhpGenerator extends PhpClientCodegen implements CodegenConfig {
 
@@ -68,19 +68,22 @@ public class ElasticClientPhpGenerator extends PhpClientCodegen implements Codeg
   @Override
   @SuppressWarnings("static-method")
   public void addOperationToGroup(String tag, String resourcePath,
-      Operation operation, CodegenOperation co,
+      Operation operation, CodegenOperation baseCo,
       Map<String, List<CodegenOperation>> operations) {
-    String uniqueName = co.operationId;
-    List<CodegenOperation> opList = new ArrayList<CodegenOperation>();
-    co.operationIdLowerCase = uniqueName.toLowerCase(Locale.ROOT);
-    co.operationIdCamelCase = org.openapitools.codegen.utils.StringUtils.camelize(uniqueName);
-    co.operationIdSnakeCase = org.openapitools.codegen.utils.StringUtils.underscore(uniqueName);
 
-    opList.add(co);
-    operations.put(uniqueName, opList);
+    getCodegenOperationAliases(operation, baseCo).forEach(co -> {
+      String uniqueName = co.operationId;
+
+      co.operationIdLowerCase = uniqueName.toLowerCase(Locale.ROOT);
+      co.operationIdCamelCase = org.openapitools.codegen.utils.StringUtils.camelize(uniqueName);
+      co.operationIdSnakeCase = org.openapitools.codegen.utils.StringUtils.underscore(uniqueName);
+
+      operations.put(uniqueName, Arrays.asList(co));
+    });
   }
 
   @Override
+  @SuppressWarnings("rawtypes")
   public String getTypeDeclaration(Schema p) {
     if (ModelUtils.isArraySchema(p) || ModelUtils.isMapSchema(p)) {
       return "array";
@@ -98,6 +101,31 @@ public class ElasticClientPhpGenerator extends PhpClientCodegen implements Codeg
     }
 
     return super.getTypeDeclaration(name);
+  }
+
+  @Override
+  @SuppressWarnings("rawtypes")
+  public CodegenOperation fromOperation(String path,
+                                        String httpMethod,
+                                        Operation operation,
+                                        Map<String, Schema> schemas,
+                                        OpenAPI openAPI) {
+      processOperation(operation, openAPI);
+      CodegenOperation op = super.fromOperation(path, httpMethod, operation, schemas, openAPI);
+
+      return op;
+  }
+
+  private void processOperation(Operation operation, OpenAPI openAPI) {
+      RequestBody requestBody = ModelUtils.getReferencedRequestBody(openAPI, operation.getRequestBody());
+      if (requestBody != null) {
+          processRequestBody(requestBody, openAPI);
+      }
+  }
+
+  private void processRequestBody(RequestBody requestBody, OpenAPI openAPI) {
+      requestBody.getContent();
+      Schema<?> schema = ModelUtils.getReferencedSchema(openAPI, ModelUtils.getSchemaFromRequestBody(requestBody));
   }
 
   @Override
@@ -121,5 +149,45 @@ public class ElasticClientPhpGenerator extends PhpClientCodegen implements Codeg
     this.modelDocTemplateFiles.clear();
 
     apiTemplateFiles.put("api.mustache", ".php");
+  }
+
+  private List<CodegenOperation> getCodegenOperationAliases(Operation operation, CodegenOperation co) {
+    List<CodegenOperation> operationsAliases = new ArrayList<>();
+
+    operationsAliases.add(co);
+
+    if (operation.getExtensions() != null && operation.getExtensions().containsKey("x-operation-aliases")) {
+      Map<String, Map<String, Object>> aliases = (Map<String, Map<String, Object>>) operation.getExtensions().get("x-operation-aliases");
+      for (Map.Entry<String, Map<String, Object>> alias: aliases.entrySet()) {
+        CodegenOperation aliasCo = new CodegenOperation();
+        List<String> validParamNames = (List) alias.getValue().get("params");
+        Predicate<CodegenParameter> paramFilter = codegenParameter -> validParamNames.contains(codegenParameter.paramName);
+        Arrays.asList(CodegenOperation.class.getFields()).stream().forEach(f -> {
+          try {
+            Object fieldValue = f.get(co);
+            if (f.getName().endsWith("Params") && fieldValue instanceof List) {
+              List<CodegenParameter> params = (List<CodegenParameter>) ((List) fieldValue).stream().filter(paramFilter).map(
+                  p -> ReflectionClone.clone(p, new CodegenParameter())
+              ).collect(Collectors.toList());
+
+              if (params.isEmpty() == false) {
+                params.get(params.size() -1).hasMore = false;
+              }
+              fieldValue = params;
+            }
+            f.set(aliasCo, fieldValue);
+          } catch (IllegalAccessException e) {
+            ;
+          }
+          aliasCo.operationId = alias.getKey();
+          if (alias.getValue().containsKey("summary")) {
+            aliasCo.summary = (String) alias.getValue().get("summary");
+          }
+        });
+        operationsAliases.add(aliasCo);
+      }
+    }
+
+    return operationsAliases;
   }
 }
