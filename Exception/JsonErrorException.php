@@ -57,11 +57,11 @@ class JsonErrorException extends \Exception implements ClientException
      */
     public function __construct($code, $input, $result, $previous = null)
     {
-        if (true !== isset(self::$messages[$code])) {
+        if (true !== isset((self::$messages)[$code])) {
             throw new InvalidArgumentException(sprintf('Encountered unknown JSON error code: [%d]', $code));
         }
 
-        parent::__construct(self::$messages[$code], $code, $previous);
+        parent::__construct((self::$messages)[$code], $code, $previous);
         $this->input = $input;
         $this->result = $result;
     }
