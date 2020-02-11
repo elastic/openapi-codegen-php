@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of the Elastic OpenAPI PHP code generator.
  *
@@ -57,11 +58,12 @@ class JsonErrorException extends \Exception implements ClientException
      */
     public function __construct($code, $input, $result, $previous = null)
     {
-        if (true !== isset((self::$messages)[$code])) {
+        $messages = self::$messages;
+        if (true !== isset($messages[$code])) {
             throw new InvalidArgumentException(sprintf('Encountered unknown JSON error code: [%d]', $code));
         }
 
-        parent::__construct((self::$messages)[$code], $code, $previous);
+        parent::__construct($messages[$code], $code, $previous);
         $this->input = $input;
         $this->result = $result;
     }

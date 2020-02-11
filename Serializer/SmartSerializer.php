@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of the Elastic OpenAPI PHP code generator.
  *
@@ -9,7 +10,6 @@
 namespace Elastic\OpenApi\Codegen\Serializer;
 
 use Elastic\OpenApi\Codegen\Exception\JsonErrorException;
-use \stdClass;
 
 /**
  * Default serializer used by the client.
@@ -87,12 +87,14 @@ class SmartSerializer implements SerializerInterface
      * Prepare data for serialization :
      * - Convert all empty arrays in stdClass, so we can get an object.
      *
+     * @SuppressWarnings(PHPMD.MissingImport)
+     *
      * @param array $data
      */
     private function prepareData(&$data)
     {
         if (is_array($data) && empty($data)) {
-            $data = new stdClass();
+            $data = new \stdClass();
         } elseif (is_array($data)) {
             array_walk($data, [$this, __METHOD__]);
         }

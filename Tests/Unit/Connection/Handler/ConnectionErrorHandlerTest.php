@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of the Elastic OpenAPI PHP code generator.
  *
@@ -10,7 +11,6 @@ namespace Elastic\OpenApi\Codegen\Tests\Unit\Connection\Handler;
 
 use GuzzleHttp\Ring\Future\CompletedFutureArray;
 use PHPUnit\Framework\TestCase;
-use \Exception;
 use Elastic\OpenApi\Codegen\Connection\Handler\ConnectionErrorHandler;
 use Elastic\OpenApi\Codegen\Exception\ConnectionException;
 use Elastic\OpenApi\Codegen\Exception\CouldNotResolveHostException;
@@ -52,33 +52,37 @@ class ConnectionErrornHandlerTest extends TestCase
     }
 
     /**
+     * List of tested errors.
+     *
+     * @SuppressWarnings(PHPMD.MissingImport)
+     *
      * @return array
      */
     public function errorDataProvider()
     {
         $data = [
           [
-            ['error' => new Exception('Unknown exception')],
+            ['error' => new \Exception('Unknown exception')],
             ConnectionException::class,
             'Unknown exception',
           ],
           [
-            ['error' => new Exception('Unknown exception'), 'curl' => []],
+            ['error' => new \Exception('Unknown exception'), 'curl' => []],
             ConnectionException::class,
             'Unknown exception',
           ],
           [
-            ['error' => new Exception('Could not resolve host'), 'curl' => ['errno' => CURLE_COULDNT_RESOLVE_HOST]],
+            ['error' => new \Exception('Could not resolve host'), 'curl' => ['errno' => CURLE_COULDNT_RESOLVE_HOST]],
             CouldNotResolveHostException::class,
             'Could not resolve host',
           ],
           [
-            ['error' => new Exception('Could not connect to host'), 'curl' => ['errno' => CURLE_COULDNT_CONNECT]],
+            ['error' => new \Exception('Could not connect to host'), 'curl' => ['errno' => CURLE_COULDNT_CONNECT]],
             CouldNotConnectToHostException::class,
             'Could not connect to host',
           ],
           [
-            ['error' => new Exception('Timeout exception'), 'curl' => ['errno' => CURLE_OPERATION_TIMEOUTED]],
+            ['error' => new \Exception('Timeout exception'), 'curl' => ['errno' => CURLE_OPERATION_TIMEOUTED]],
             OperationTimeoutException::class,
             'Timeout exception',
           ],
