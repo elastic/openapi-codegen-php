@@ -41,8 +41,14 @@ class RequestSerializationHandlerTest extends TestCase
         $data = [
             [['http_method' => 'POST', 'body' => ['foo' => 'bar']], '{"foo":"bar"}'],
             [['http_method' => 'GET', 'query_params' => ['foo' => 'bar']], null],
-            [['http_method' => 'POST', 'body' => ['foo' => 'bar'], 'query_params' => ['foo' => 'bar']], '{"foo":"bar"}'],
-            [['http_method' => 'POST', 'body' => ['foo1' => 'bar1'], 'query_params' => ['foo2' => 'bar2']], '{"foo1":"bar1","foo2":"bar2"}'],
+            [
+                ['http_method' => 'POST', 'body' => ['foo' => 'bar'], 'query_params' => ['foo' => 'bar']],
+                '{"foo":"bar"}'
+            ],
+            [
+                ['http_method' => 'POST', 'body' => ['foo1' => 'bar1'], 'query_params' => ['foo2' => 'bar2']],
+                '{"foo1":"bar1","foo2":"bar2"}'
+            ],
             [[], null],
         ];
 
