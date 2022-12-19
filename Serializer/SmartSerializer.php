@@ -103,6 +103,8 @@ class SmartSerializer implements SerializerInterface
     /**
      * @todo For 2.0, remove the E_NOTICE check before raising the exception.
      *
+     * @SuppressWarnings(PHPMD.ErrorControlOperator)
+     *
      * @throws JsonErrorException
      *
      * @param $data
