@@ -5,25 +5,29 @@ unit_tests: &unit_tests
   - install_deps
   - run_unit_tests
 
+php81: &php81
+  docker:
+  - image: cimg/php:8.1.7-browsers
+
 php73: &php73
   docker:
-  - image: circleci/php:7.3-browsers
+  - image: cimg/php:7.3-browsers
 
 php72: &php72
   docker:
-  - image: circleci/php:7.2-browsers
+  - image: cimg/php:7.2-browsers
 
 php71: &php71
   docker:
-  - image: circleci/php:7.1-browsers
+  - image: cimg/php:7.1-browsers
 
 php70: &php70
   docker:
-  - image: circleci/php:7.0-browsers
+  - image: cimg/php:7.0-browsers
 
 php56: &php56
   docker:
-  - image: circleci/php:5.6-browsers
+  - image: cimg/php:5.6-browsers
 
 commands:
 
@@ -54,6 +58,10 @@ commands:
         command: vendor/bin/phpunit -c phpunit.xml.dist --testsuite unit
 
 jobs:
+
+  php-81-unit-tests:
+    <<: *unit_tests
+    <<: *php81
 
   php-73-unit-tests:
     <<: *unit_tests
@@ -106,6 +114,9 @@ workflows:
     - qa-phplint
     - qa-phpcs
     - qa-phpmd
+  php-81-tests:
+    jobs:
+    - php-81-unit-tests
   php-73-tests:
     jobs:
     - php-73-unit-tests
