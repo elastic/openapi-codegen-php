@@ -22,7 +22,7 @@
     "phpunit/phpunit" : "^5.6.0|^6.3.0|9.5.20",
     "squizlabs/php_codesniffer" : "^3.4.0",
     "friendsofphp/php-cs-fixer": "^2.19|^3.0",
-    "overtrue/phplint": "^3.4|^4.0|^5.0|^6.0",
+    "overtrue/phplint": "^1.2|^2.4|^3.4|^4.0|^5.0|^6.0",
     "phpmd/phpmd": "^2.6"
   },
   "autoload" : {
