@@ -92,7 +92,7 @@ jobs:
     <<: *php56
 
   qa-phplint:
-    <<: *php73
+    <<: *php82
     steps:
     - install_deps
     - run:
@@ -100,7 +100,7 @@ jobs:
         command: vendor/bin/phplint . --exclude=vendor
 
   qa-phpcs:
-    <<: *php73
+    <<: *php82
     steps:
     - install_deps
     - run:
@@ -108,7 +108,7 @@ jobs:
         command: vendor/bin/phpcs --ignore=vendor,resources --standard=PSR12 .
 
   qa-phpmd:
-    <<: *php73
+    <<: *php82
     steps:
     - install_deps
     - run:
