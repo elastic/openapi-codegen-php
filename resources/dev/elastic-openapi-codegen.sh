@@ -15,8 +15,8 @@ echo $generatordir
 
 generatordir=$(cd $(dirname $argv0) > /dev/null && cd $generatordir > /dev/null && pwd)
 generaroimage=elastic/elastic-openapi-codegen-php
-rootdir=`cd $(dirname $argv0)/../..; pwd`
-fixerimage="herloct/php-cs-fixer"
+rootdir=`cd $(dirname $argv0)/../../../../..; pwd`
+fixerimage="cytopia/php-cs-fixer"
 echo $rootdir
 
 cd ${generatordir} && docker build --target runner -t ${generaroimage} elastic-openapi-codegen-php
@@ -27,4 +27,4 @@ docker run --rm -v ${rootdir}:/local ${generaroimage} generate -g elastic-php-cl
                                                                -c /local/resources/api/config.json \
                                                                -t /local/resources/api/templates
 
-docker run --rm -v ${rootdir}:/project ${fixerimage} fix --config=.php_cs.dist
+docker run --rm -v ${rootdir}:/project ${fixerimage} fix --config=/project/.php-cs-fixer.dist.php
