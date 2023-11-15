@@ -21,5 +21,6 @@ local.properties
 .idea/*
 out/
 .idea_modules/
+
 .php_cs.cache
 .phplint-cache
