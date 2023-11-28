@@ -117,7 +117,7 @@ class SmartSerializer implements SerializerInterface
             return '';
         }
 
-        $result = @json_decode($data, true);
+        $result = json_decode($data, true);
 
         if (JSON_ERROR_NONE !== json_last_error() && E_NOTICE === (error_reporting() & E_NOTICE)) {
             throw new JsonErrorException(json_last_error(), $data, $result);

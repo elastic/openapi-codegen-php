@@ -61,7 +61,7 @@ class RequestSerializationHandler
             unset($request['query_params']);
         }
 
-        if (!empty($body)) {
+        if (!empty($body) && 'GET' !== $request['http_method']) {
             ksort($body);
             $request['body'] = $this->serializer->serialize($body);
         }
