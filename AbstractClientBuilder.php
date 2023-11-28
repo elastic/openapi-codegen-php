@@ -133,7 +133,7 @@ abstract class AbstractClientBuilder
     }
 
     /**
-     * Return the configured clien.
+     * Return the configured client.
      */
     abstract public function build();
 
